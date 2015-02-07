@@ -28,6 +28,8 @@ end
 # give every possible pairing - in this case:
 # [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
 # make sure you don't have the same pairing twice, 
+
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def every_possible_pairing_of_students(array)
 end
 
@@ -66,6 +68,16 @@ end
 # even numbers come first
 # so [1, 2, 3, 4, 5, 6] becomes [[2, 4, 6], [1, 3, 5]]
 def separate_array_into_even_and_odd_numbers(array)
+  even=[]
+  odd=[]
+  array.each do |el| 
+    if el.even?
+      even << el
+    else
+      odd << el
+    end
+  end
+  [even,odd]
 end
 
 # count the numbers of elements in an element which are palindromes
