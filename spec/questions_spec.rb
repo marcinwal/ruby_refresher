@@ -40,10 +40,10 @@ describe 'the Friday test :)' do
   #   expect(sorted).to eq [['Bob', 'Clive'], ['Bob', 'Dave'], ['Clive', 'Dave']]
   # end
 
-  # it 'all_elements_except_first_3' do
-  #   n = all_elements_except_first_3 [1, 2, 3, 4, 5, 6, 7]
-  #   expect(n).to eq [4, 5, 6, 7]
-  # end
+  it 'all_elements_except_first_3' do
+    n = all_elements_except_first_3 [1, 2, 3, 4, 5, 6, 7]
+    expect(n).to eq [4, 5, 6, 7]
+  end
 
   # it 'add_element_to_beginning_of_array' do
   #   n = add_element_to_beginning_of_array [2, 3, 4, 5], 1
