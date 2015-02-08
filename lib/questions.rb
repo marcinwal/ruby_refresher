@@ -217,11 +217,13 @@ end
 # take a date and format it like dd/mm/yyyy, so Halloween 2013
 # becomes 31/10/2013
 def format_date_nicely(date)
+  "#{date.day}/#{date.month}/#{date.year}"
 end
 
 # get the domain name *without* the .com part, from an email address
 # so alex@makersacademy.com becomes makersacademy
 def get_domain_name_from_email_address(email)
+  /@[\w]+./.match(email)[0][1..-2]
 end
 
 # capitalize the first letter in each word of a string, 
