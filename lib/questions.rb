@@ -232,6 +232,8 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
+  except = ['a','and','the']
+  s=string.split(' ').each_with_index{|el,ix| el.capitalize! if !except.include?(el)||(ix==0)}.join(' ')
 end
 
 # return true if a string contains any special characters
