@@ -94,8 +94,14 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
-    # array.select{ |el|  el[0..(el.size/2.0-1)]==el[(el.size/2.0+1)..-1].reverse}.count
-    # array.select{ |el|  el[0..(el.size/2.0)-1]==el[(el.size/2.0)..-1].reverse}.count
+    count = 0
+    array.each do |el|
+      count+=1 if (el[0..(el.size/2.0-1)]==el[(el.size/2.0+1)..-1].reverse) && (!el.size.even?)
+      count+=1 if (el[0..(el.size/2.0-1)]==el[(el.size/2.0)..-1].reverse) && (el.size.even?)
+    end
+    count
+    # odd==array.select{ |el|  el[0..(el.size/2.0-1)]==el[(el.size/2.0+1)..-1].reverse}.count  
+    # even=array.select{ |el|  el[0..(el.size/2.0)-1]==el[(el.size/2.0)..-1].reverse}.count
 end
 
 # return the shortest word in an array
