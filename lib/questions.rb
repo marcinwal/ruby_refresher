@@ -31,6 +31,15 @@ end
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 def every_possible_pairing_of_students(array)
+#should generte uniquew bits indexes in a nice way
+  # array.permutation(2).to_a.uniq
+  tab = []
+  array.each do|el1|
+    array.each do |el2|
+      tab << [el1,el2] if (el1!=el2) && !(tab.include?([el1,el2])) && !(tab.include?([el2,el1])) 
+    end
+  end
+  return tab
 end
 
 # discard the first 3 elements of an array, 
@@ -85,6 +94,8 @@ end
 # e.g. 'bob'. So in the array ['bob', 'radar', 'eat'], there
 # are 2 palindromes (bob and radar), so the method should return 2
 def number_of_elements_that_are_palindromes(array)
+    # array.select{ |el|  el[0..(el.size/2.0-1)]==el[(el.size/2.0+1)..-1].reverse}.count
+    # array.select{ |el|  el[0..(el.size/2.0)-1]==el[(el.size/2.0)..-1].reverse}.count
 end
 
 # return the shortest word in an array
