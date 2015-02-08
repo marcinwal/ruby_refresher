@@ -128,11 +128,13 @@ end
 
 # convert a symbol into a string
 def turn_symbol_into_string(symbol)
+  symbol.to_s
 end
 
 # get the average from an array, rounded to the nearest integer
 # so [10, 15, 25] should return 33
 def average_of_array(array)
+  (array.reduce{|sum,el| sum+=el}/array.count.to_f).round
 end
 
 # get all the elements in an array, up until the first element
@@ -140,6 +142,12 @@ end
 # [1, 3, 5, 4, 1, 2, 6, 2, 1, 3, 7]
 # becomes [1, 3, 5, 4, 1, 2]
 def get_elements_until_greater_than_five(array)
+  index = 0 
+  array.each_with_index do |el,ix|
+    index = ix if el <= 5
+    break if el > 5
+  end
+  array[0..index]
 end
 
 # turn an array (with an even number of elements) into a hash, by
