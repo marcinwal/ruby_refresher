@@ -220,4 +220,9 @@ describe 'the Friday test :)' do
     n = count_words_of_each_length_in_a_file('data/lorem.txt') || []
     expect(Hash[n.sort]).to eq({1=>1, 2=>5, 3=>7, 4=>12, 5=>14, 6=>4, 7=>8, 8=>6, 9=>6, 10=>2, 11=>2, 12=>3}) 
   end
+
+  it 'should show fizzbuzz without modulo' do 
+    n = fizzbuzz_without_modulo(20)
+    expect(n).to eq( [1, 2, "fizz", 4, "buzz", "fizz", 7, 8, "fizz", "buzz", 11, "fizz", 13, 14, "fizzbuzz", 16, 17, "fizz", 19, "buzz"])
+  end 
 end

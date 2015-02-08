@@ -297,9 +297,7 @@ def is_a_2014_bank_holiday?(date)
   result['england-and-wales']['events'].each do |event|
     return true if event['date'] == my_date
   end
-
   return false 
-
 end
 
 # given your birthday this year, this method tells you
@@ -336,7 +334,25 @@ end
 # implement fizzbuzz without modulo, i.e. the % method
 # go from 1 to 100
 # (there's no RSpec test for this one)
-def fizzbuzz_without_modulo
+def fizzbuzz_without_modulo(max)
+  fizz = 3
+  buzz = 5 
+  table = []
+  (1..max).each do |el|
+    fizz -= 1
+    buzz -= 1
+    table << el if fizz!=0 && buzz!=0
+    if fizz == 0
+      table << 'fizz'
+      fizz = 3
+    end
+    if buzz == 0 
+      table << 'buzz' unless fizz == 3
+      table[table.size-1] += 'buzz' if fizz == 3 
+      buzz = 5
+    end  
+  end
+  table 
 end
 
 # print the lyrics of the song 99 bottles of beer on the wall
