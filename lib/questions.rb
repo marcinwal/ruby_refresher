@@ -1,3 +1,7 @@
+require 'rest_client'
+require 'byebug'
+require 'json'
+
 # keep only the elements that start with an a
 def select_elements_starting_with_a(array)
   array.select { |el| el[0]=='a'}
@@ -253,14 +257,23 @@ end
 # should return true for a 3 dot range like 1...20, false for a 
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  !(range.end == range.max)
 end
 
 # get the square root of a number
 def square_root_of(number)
+  Math.sqrt(number)
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  count = 0 
+  File.open(file_path) do |file|
+    file.each do |line|
+      count += line.split(' ').count
+    end
+  end
+  count
 end
 
 # --- tougher ones ---
@@ -269,12 +282,26 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  eval(str_method)
 end
 
 # return true if the date is a uk bank holiday for 2014
 # the list of bank holidays is here:
 # https://www.gov.uk/bank-holidays
 def is_a_2014_bank_holiday?(date)
+  my_date = date.strftime("%Y-%m-%d")
+  url = 'https://www.gov.uk/bank-holidays.json'
+  response = RestClient.get(url)
+  data=response.body
+  result = JSON.parse(data)
+  (result['england-and-wales']['events']).each do |event|
+    # byebug
+    # puts event
+    return true if event['date'] == my_date
+  end
+
+  return false 
+
 end
 
 # given your birthday this year, this method tells you
