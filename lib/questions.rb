@@ -294,9 +294,7 @@ def is_a_2014_bank_holiday?(date)
   response = RestClient.get(url)
   data=response.body
   result = JSON.parse(data)
-  (result['england-and-wales']['events']).each do |event|
-    # byebug
-    # puts event
+  result['england-and-wales']['events'].each do |event|
     return true if event['date'] == my_date
   end
 
@@ -309,6 +307,11 @@ end
 # e.g. january 1st, will next be a friday in 2016
 # return the day as a capitalized string like 'Friday'
 def your_birthday_is_on_a_friday_in_the_year(birthday)
+  year,month,day = birthday.year,birthday.month,birthday.day
+  while true do
+    year += 1
+    return year if Time.new(year,month,day).friday?
+  end
 end
 
 # in a file, total the number of times words of different lengths
@@ -317,6 +320,17 @@ end
 # and 1 that is 4 letters long. Return it as a hash in the format
 # word_length => count, e.g. {2 => 1, 3 => 5, 4 => 1}
 def count_words_of_each_length_in_a_file(file_path)
+ result = {} 
+  File.open(file_path) do |file|
+    file.each do |line|
+      line.split(' ').each do |word|
+        w = /\w+/.match(word)[0]
+        result[w.size] += 1 if result[w.size]
+        result[w.size] = 1 if !result[w.size]
+      end
+    end
+  end
+  result
 end
 
 # implement fizzbuzz without modulo, i.e. the % method
